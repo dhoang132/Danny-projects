@@ -67,6 +67,7 @@ public class MovieList {
         }
         return null;
     }
+    //displays next movie on the playlist
     public String nextMovie() {
         if (this.movieNumber == this.movieList.size() - 1) {
             return this.movieList.get(this.movieNumber).toString();
@@ -75,6 +76,7 @@ public class MovieList {
             return this.movieList.get(this.movieNumber).toString();
         }
     }
+    //display previous movie on the playlist
     public String previousMovie(){
         if(this.movieNumber==0)
         {
@@ -84,6 +86,7 @@ public class MovieList {
             return this.movieList.get(this.movieNumber).toString();
         }
     }
+    //display current movie on the playlist
     public String showCurrent(){
         return this.movieList.get(this.movieNumber).toString();
     }
