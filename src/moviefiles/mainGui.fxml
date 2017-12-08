@@ -1,0 +1,39 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<BorderPane fx:controller="moviefiles.Controller"
+            xmlns:fx="http://javafx.com/fxml">
+    <padding>
+        <Insets right="10" left="10" top="10"/>
+    </padding>
+    <top>
+        <Label text="Movies Play List" textFill="black" BorderPane.alignment="CENTER">
+        </Label>
+    </top>
+    <center>
+        <TextArea fx:id="areaField" text="new" editable="false" BorderPane.alignment="CENTER"/>
+    </center>
+    <right>
+        <Button fx:id="buttonNext" text="next" BorderPane.alignment="CENTER" prefWidth="90"
+        onAction="#onButtonClicked"/>
+    </right>
+    <left>
+        <Button fx:id="buttonPrevious" text ="previous" BorderPane.alignment="CENTER" prefWidth="90"
+        onAction="#onButtonClicked"/>
+    </left>
+    <bottom>
+        <HBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets bottom="10" top="10"/>
+            </padding>
+            <Button fx:id="buttonShowList" text="show list" prefWidth="90"
+            onAction="#onButtonClicked"/>
+            <Button fx:id="buttonCurrent" text="show current" prefWidth="90"
+            onAction="#onButtonClicked"/>
+            <Button text="add movie" prefWidth="90" disable="true"/>
+        </HBox>
+    </bottom>
+</BorderPane>

@@ -1,3 +1,5 @@
+package moviefiles;
+
 public class Movie {
         private int movieId;
         private int releaseYear;

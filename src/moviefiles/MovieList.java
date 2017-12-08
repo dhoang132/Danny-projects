@@ -1,11 +1,21 @@
+package moviefiles;
+
+import moviefiles.Movie;
+
 import java.util.LinkedList;
 import java.util.ListIterator;
 
 public class MovieList {
     private LinkedList<Movie> movieList;
+    private int movieNumber;
 
     public MovieList(){
+
         this.movieList=new LinkedList<Movie>();
+        this.movieNumber=0;
+    }
+    public LinkedList<Movie> getList(){
+        return this.movieList;
     }
 
 
@@ -40,11 +50,13 @@ public class MovieList {
         }
     }
     //prints out each movie out list
-    public void printList(){
+    public String printList(){
         ListIterator<Movie> movieListIterator = this.movieList.listIterator();
+        String movieList="";
         while(movieListIterator.hasNext()){
-            System.out.println(movieListIterator.next().toString());
+            movieList+=movieListIterator.next().toString() + "\n";
         }
+        return movieList;
     }
     //checks for duplicates.
     public Movie findMovie(String name, String director){
@@ -54,6 +66,26 @@ public class MovieList {
             }
         }
         return null;
+    }
+    public String nextMovie() {
+        if (this.movieNumber == this.movieList.size() - 1) {
+            return this.movieList.get(this.movieNumber).toString();
+        } else {
+            this.movieNumber++;
+            return this.movieList.get(this.movieNumber).toString();
+        }
+    }
+    public String previousMovie(){
+        if(this.movieNumber==0)
+        {
+            return this.movieList.get(this.movieNumber).toString();
+        }else {
+            this.movieNumber--;
+            return this.movieList.get(this.movieNumber).toString();
+        }
+    }
+    public String showCurrent(){
+        return this.movieList.get(this.movieNumber).toString();
     }
 }
 
