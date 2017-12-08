@@ -7,10 +7,12 @@ import java.util.ListIterator;
 public class MovieList {
     private LinkedList<Movie> movieList;
     private int movieNumber;
+    private MovieSummary movieSummary;
 
     public MovieList(){
 
         this.movieList=new LinkedList<Movie>();
+        this.movieSummary=new MovieSummary();
         this.movieNumber=0;
     }
     public LinkedList<Movie> getList(){
@@ -22,23 +24,28 @@ public class MovieList {
             ListIterator<Movie> movieListIterator = movieList.listIterator();
             if(!movieListIterator.hasNext()){
                 this.movieList.add(movie);
+                this.movieSummary.addSummary(((Integer) movie.getMovieId()), movie.getSummary());
             }else{
                 for(int i=0; i<(movieList.size()); i++){
                     if(movieList.get(i).getReleaseYear()==movie.getReleaseYear()){
                         if(movieList.get(i).getReleaseMonth()<movie.getReleaseMonth()){
                             this.movieList.add(i, movie);
+                            this.movieSummary.addSummary(((Integer) movie.getMovieId()), movie.getSummary());
                             break;
                         }else {
                             this.movieList.add(i+1, movie);
+                            this.movieSummary.addSummary(((Integer) movie.getMovieId()), movie.getSummary());
                             break;
                         }
                     }
                     if(movieList.get(i).getReleaseYear()<movie.getReleaseYear()){
                         this.movieList.add(i, movie);
+                        this.movieSummary.addSummary(((Integer) movie.getMovieId()), movie.getSummary());
                         break;
                     }
                     if (i == movieList.size()-1){
                         this.movieList.add(movie);
+                        this.movieSummary.addSummary(((Integer) movie.getMovieId()), movie.getSummary());
                         break;
                     }
                 }
@@ -67,25 +74,31 @@ public class MovieList {
     //displays next movie on the playlist
     public String nextMovie() {
         if (this.movieNumber == this.movieList.size() - 1) {
-            return this.movieList.get(this.movieNumber).toString();
+            return this.movieList.get(this.movieNumber).toString()+ "\n"
+                    + movieSummary.getSumary((((Integer) this.movieList.get(this.movieNumber).getMovieId())));
         } else {
             this.movieNumber++;
-            return this.movieList.get(this.movieNumber).toString();
+            return this.movieList.get(this.movieNumber).toString()+ "\n"
+                    + movieSummary.getSumary((((Integer) this.movieList.get(this.movieNumber).getMovieId())));
         }
     }
     //display previous movie on the playlist
     public String previousMovie(){
         if(this.movieNumber==0)
         {
-            return this.movieList.get(this.movieNumber).toString();
+            return this.movieList.get(this.movieNumber).toString()+ "\n"
+                    + movieSummary.getSumary((((Integer) this.movieList.get(this.movieNumber).getMovieId())));
         }else {
             this.movieNumber--;
-            return this.movieList.get(this.movieNumber).toString();
+            return this.movieList.get(this.movieNumber).toString()+ "\n"
+                    + movieSummary.getSumary((((Integer) this.movieList.get(this.movieNumber).getMovieId())));
         }
     }
     //display current movie on the playlist
     public String showCurrent(){
-        return this.movieList.get(this.movieNumber).toString();
+
+        return (this.movieList.get(this.movieNumber).toString()) + "\n"
+                + movieSummary.getSumary((((Integer) this.movieList.get(this.movieNumber).getMovieId())));
     }
 }
 

@@ -14,7 +14,7 @@
         </Label>
     </top>
     <center>
-        <TextArea fx:id="areaField" text="new" editable="false" BorderPane.alignment="CENTER"/>
+        <TextArea fx:id="areaField" text="new" editable="false" BorderPane.alignment="CENTER" wrapText="true"/>
     </center>
     <right>
         <Button fx:id="buttonNext" text="next" BorderPane.alignment="CENTER" prefWidth="90"
