@@ -34,7 +34,7 @@ public class Movie {
         public String getName() {
             return name;
         }
-
+        @Override
         public String toString(){
             return (this.name + " directed by " + this.director + " released:" + this.getReleaseMonth()+ "/" + this.getReleaseYear());
         }

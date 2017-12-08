@@ -1,7 +1,6 @@
 package moviefiles;
 
 import moviefiles.Movie;
-
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -17,8 +16,6 @@ public class MovieList {
     public LinkedList<Movie> getList(){
         return this.movieList;
     }
-
-
     //checks for duplicate and adds movies according to release date.
     public void addMovie(Movie movie){
         if(findMovie(movie.getName(), movie.getDirector())==null){
