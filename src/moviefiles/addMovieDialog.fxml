@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<BorderPane fx:id="addMoviePane" fx:controller="moviefiles.AddMovieController"
+            xmlns:fx="http://javafx.com/fxml">
+    <left>
+        <GridPane vgap="1" hgap="10">
+            <TextField fx:id="movieNameField" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <Label text="Movie Title" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="directorField" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <Label text="Director" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="movieIdField" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <Label text="Movie ID" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <TextField fx:id="releaseMonthField" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <Label text="Release Month" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <TextField fx:id="releaseYearField" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+            <Label text="Release Year" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+        </GridPane>
+    </left>
+    <center>
+        <VBox>
+            <padding>
+                <Insets left="10"/>
+            </padding>
+        <TextArea fx:id="movieSummaryField" text="enter movie summary" wrapText="true"/>
+        </VBox>
+    </center>
+    <bottom>
+
+    </bottom>
+
+</BorderPane>

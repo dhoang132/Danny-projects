@@ -2,11 +2,18 @@ package moviefiles;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 
 public class Controller {
@@ -20,6 +27,10 @@ public class Controller {
     private Button buttonShowList;
     @FXML
     private Button buttonCurrent;
+    @FXML
+    private Button addMovie;
+    @FXML
+    private BorderPane mainBorderPane;
 
     MovieList movieList = new MovieList();
 
@@ -48,6 +59,34 @@ public class Controller {
                         "supplants him as top toy in a boy's room."));
         areaField.setText(movieList.showCurrent());
     }
+    @FXML
+    public void showAddMovie(){
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(mainBorderPane.getScene().getWindow());
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("addMovieDialog.fxml"));
+        try{
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+            dialog.resizableProperty();
+            dialog.setTitle("Add Movie");
+            dialog.setWidth(550);
+            dialog.setHeight(340);
+        } catch (IOException e){
+            System.out.println("Couldn't load the dialog");
+            e.printStackTrace();
+            return;
+        }
+
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
+        Optional<ButtonType> result = dialog.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            System.out.println("ok button clicked");
+            AddMovieController controller = fxmlLoader.getController();
+            movieList.addMovie(controller.processData());
+        }
+    }
 
     @FXML
     public void onButtonClicked(ActionEvent e){
@@ -62,6 +101,10 @@ public class Controller {
         }
         if(e.getSource().equals(buttonCurrent)){
             areaField.setText(movieList.showCurrent());
+        }
+        if(e.getSource().equals(addMovie)) {
+            System.out.println("add button clicked");
+            showAddMovie();
         }
     }
 }

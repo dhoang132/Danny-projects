@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<BorderPane fx:controller="moviefiles.Controller"
+<BorderPane fx:id="mainBorderPane" fx:controller="moviefiles.Controller"
             xmlns:fx="http://javafx.com/fxml">
     <padding>
         <Insets right="10" left="10" top="10"/>
@@ -33,7 +33,7 @@
             onAction="#onButtonClicked"/>
             <Button fx:id="buttonCurrent" text="show current" prefWidth="90"
             onAction="#onButtonClicked"/>
-            <Button text="add movie" prefWidth="90" disable="true"/>
+            <Button fx:id="addMovie" text="add movie" prefWidth="90" disable="false" onAction="#onButtonClicked"/>
         </HBox>
     </bottom>
 </BorderPane>
