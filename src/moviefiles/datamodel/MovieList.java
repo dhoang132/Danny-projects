@@ -1,6 +1,5 @@
-package moviefiles;
+package moviefiles.datamodel;
 
-import moviefiles.Movie;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -15,6 +14,11 @@ public class MovieList {
         this.movieSummary=new MovieSummary();
         this.movieNumber=0;
     }
+
+    public void setMovieList(LinkedList<Movie> movieList) {
+        this.movieList = movieList;
+    }
+
     public LinkedList<Movie> getList(){
         return this.movieList;
     }

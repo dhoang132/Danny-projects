@@ -8,11 +8,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Modality;
+import moviefiles.datamodel.Movie;
+import moviefiles.datamodel.MovieData;
+import moviefiles.datamodel.MovieList;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 
 
@@ -35,30 +36,15 @@ public class Controller {
     MovieList movieList = new MovieList();
 
     public void initialize() {
-        movieList.addMovie(new Movie("Fast and Furious", "Mel City", 45, 2001, 06,
-                "Los Angeles police officer Brian O'Connor must decide where his loyalty really lies when " +
-                        "he becomes enamored with the street racing world he has been sent undercover to destroy."));
-        movieList.addMovie(new Movie("Fast and Furious", "Mel City", 45, 2001, 06, "\n" +
-                "Los Angeles police officer Brian O'Connor must decide where his loyalty really lies when " +
-                "he becomes enamored with the street racing world he has been sent undercover to destroy."));
-        movieList.addMovie(new Movie("Moneyball", "Bennet Miller", 47, 2011, 07,
-                "Oakland A's general manager Billy Beane's successful attempt to assemble a baseball team on a lean " +
-                        "budget by employing computer-generated analysis to acquire new players."));
-        movieList.addMovie(new Movie("Zombieland", "Rubien", 48, 2009, 05,
-                "A shy student trying to reach his family in Ohio, a gun-toting tough guy trying to find " +
-                        "the last Twinkie, and a pair of sisters trying to get to an amusement park join forces to " +
-                        "travel across a zombie-filled America."));
-        movieList.addMovie(new Movie("Blow", "Ted Demen", 68, 2001, 04,
-                "The story of George Jung, along with the Medellín Cartel, headed by Pablo " +
-                        "Escobar established the American cocaine market in the 1970s in the United States."));
-        movieList.addMovie(new Movie("Lion King", "Rogers Allers", 69, 1994, 06,
-                "Lion cub and future king Simba searches for his identity. His eagerness to please " +
-                        "others and penchant for testing his boundaries sometimes gets him into trouble."));
-        movieList.addMovie(new Movie("Toy Story", "Tim Allen", 78, 1995, 06,
-                "A cowboy doll is profoundly threatened and jealous when a new spaceman figure " +
-                        "supplants him as top toy in a boy's room."));
+        //gets movie items from list created by "MovieListItems.txt" then adds it to movieList
+        ArrayList<Movie>tempMovieList = new ArrayList<>();
+        tempMovieList.addAll(MovieData.getInstance().getMovieListItems());
+        for(int i = 0; i<tempMovieList.size(); i++){
+            movieList.addMovie(tempMovieList.get(i));
+        }
         areaField.setText(movieList.showCurrent());
     }
+    //create new window to so user can input new movie
     @FXML
     public void showAddMovie(){
         Dialog<ButtonType> dialog = new Dialog<>();
@@ -76,7 +62,7 @@ public class Controller {
             e.printStackTrace();
             return;
         }
-
+        //adds default OK and Cancel button to the add movie window
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 
@@ -87,7 +73,7 @@ public class Controller {
             movieList.addMovie(controller.processData());
         }
     }
-
+    //determinds which button is press on the main window
     @FXML
     public void onButtonClicked(ActionEvent e){
         if(e.getSource().equals(buttonNext)) {

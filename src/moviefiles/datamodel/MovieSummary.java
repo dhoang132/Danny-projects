@@ -1,4 +1,4 @@
-package moviefiles;
+package moviefiles.datamodel;
 
 import java.util.HashMap;
 import java.util.Map;

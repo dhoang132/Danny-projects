@@ -1,4 +1,4 @@
-package moviefiles;
+package moviefiles.datamodel;
 
 public class Movie {
         private int movieId;
